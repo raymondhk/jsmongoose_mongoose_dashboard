@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mongoose Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        #error{
+            text-align: center;
+            color: #c5565e;
+        }
+        h1{
+            text-align: center;
+        }
+        #main{
+            /* box-shadow: 5px 5px 2px #888888; */
+            border: 1px solid #999;
+            padding: 50px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center"><%= wolf[0].name %></h2>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4" id='main'>
+                <h4 class="text-center">Update:</h4>
+                <form action="/wolves/<%= wolf[0]._id %>" method="post">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="<%= wolf[0].name %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="color">Color</label>
+                        <select class="form-control" id="color" name="color">
+                                <option>White</option>
+                                <option>Gray</option>
+                                <option>Black</option>
+                                <option>White/Gray</option>
+                                <option>White/Black</option>
+                                <option>Black/Gray</option>
+                                <option>Red...?</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="eyes">Eye Color</label>
+                        <select class="form-control" id="eyes" name="eyes">
+                                <option>White</option>
+                                <option>Blue</option>
+                                <option>Black</option>
+                                <option>Brown</option>
+                                <option>Green</option>
+                                <option>Yellow</option>
+                                <option>One Blue One Gray</option>
+                        </select>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Update Wolf"><a href="/wolves/destroy/<%= wolf[0]._id %>" class="btn btn-danger pull-right">Remove</a>
+                </form>
+
+            </div>
+            <div class="col-md-4"></div>            
+        </div>
+        <br>
+
+        <br>
+        <div class="row">
+            <div class="col-md-12" id="error">
+                <% if(typeof(errors) != 'undefined' ) { %>
+                    <% for (let x in errors) { %>
+                    <p><%= errors[x].message %></p>
+                    <% } %>
+                <% } %>
+                <a href="/">Home</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mongoose Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        #hp_wolves{
+            width: 600px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1>Welcome to the Wolves Homepage</h1>
+                <img src="images/wolves.jpg" alt="Wolves" id="hp_wolves">
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 text-center">
+                <a href="/wolves/new" class="btn btn-primary">Create Wolf!</a>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h2 class="text-center">Your Pack of Wolves</h2>
+                <% for (var i in wolves) { %>
+                    <h4 class="text-center"><a href="/wolves/edit/<%= wolves[i]._id %>"><%= wolves[i].name %>: </a></h5>
+                    <h6 class="text-center">Color: <%= wolves[i].color %>, Eye Color: <%= wolves[i].eyes %> | created at <%= moment(wolves[i].created).format('lll') %></h5>
+                    <hr>
+                <% } %>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+</body>
+</html>
